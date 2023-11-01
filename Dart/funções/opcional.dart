@@ -14,6 +14,6 @@ int numeroAleatorio([int maximo = 10]) {
   return Random().nextInt(maximo);
 }
 
-imprimirData([int dia= 1, int mes = 1, int ano = 1970]){
-  print('$dia/$mes/$ano')
+imprimirData([int dia = 1, int mes = 1, int ano = 1970]) {
+  print('$dia/$mes/$ano');
 }
