@@ -17,7 +17,7 @@ void main(List<String> args) {
   print(somenteNotasBoas);
 
   var nomes = ['Ana', 'Bia', 'Rebeca', 'Kessy', 'Joao'];
-  var nomesGrantesFn = (String nome) => nome.length >= 4;
+  var nomesGrantesFn = (String nome) => nome.length >= 5;
 
   print(filtrar(nomes, nomesGrantesFn));
 }
