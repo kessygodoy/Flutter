@@ -1,5 +1,6 @@
 import 'package:despesas/models/transaction.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 main() => runApp(ExpensesApp());
 
@@ -47,6 +48,7 @@ class MyHomePage extends StatelessWidget {
         Column(
           children: _transactions.map((e) {
             return Card(
+              // card que exibe os valores preço nome e data.
               child: Row(children: [
                 Container(
                   margin: EdgeInsets.symmetric(horizontal: 15, vertical: 10),
@@ -56,7 +58,8 @@ class MyHomePage extends StatelessWidget {
                     width: 2,
                   )),
                   padding: EdgeInsets.all(10),
-                  child: Text('R\$ ${e.value.toStringAsFixed(2)}',
+                  child: Text(
+                      'R\$ ${e.value.toStringAsFixed(2)}', //toStringAsFixed(2) -> diz que o valor a ser exbido só pode ter 2 casas decimais
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 20,
@@ -71,7 +74,7 @@ class MyHomePage extends StatelessWidget {
                           TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                     ),
                     Text(
-                      e.date.toString(),
+                      DateFormat('d MMM y').format(e.date),
                       style: TextStyle(color: Colors.grey.shade600),
                     )
                   ],
