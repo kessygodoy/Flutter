@@ -11,8 +11,11 @@ class TransactionList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 300,
-      child: ListView(
-        children: transactions.map((e) {
+      child: ListView.builder(
+        // ListView.builder() faz com que só seja renderizado na ela os elementos necessarios no momento para otimizar o desempenho
+        itemCount: transactions.length,
+        itemBuilder: (ctx, index) {
+          final e = transactions[index];
           return Card(
             // componente que recebe a lista transactions exibe os valores preço nome e data em cards numa coluna.
             child: Row(children: [
@@ -46,7 +49,8 @@ class TransactionList extends StatelessWidget {
               )
             ]),
           );
-        }).toList(),
+        },
+        // children: transactions.map((e) {}).toList(),
       ),
     );
   }
