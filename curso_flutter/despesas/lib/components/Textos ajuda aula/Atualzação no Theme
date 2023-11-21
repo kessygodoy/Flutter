@@ -1,16 +1,21 @@
+Atualização no Theme
+Fala galera! Nas últimas atualizações do Flutter tivemos algumas mudanças na forma como criar e utilizar temas. A gente fala um pouco sobre isso lá no nosso Blog: https://blog.cod3r.com.br/cores-e-temas-no-flutter-2-5/
+
+De toda forma, tentem deixar seu arquivo “main.dart” da seguinte forma:
+
 import 'package:flutter/material.dart';
 import 'dart:math';
 import './components/transaction_form.dart';
 import './components/transaction_list.dart';
 import 'models/transaction.dart';
-
+ 
 main() => runApp(ExpensesApp());
-
+ 
 class ExpensesApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ThemeData tema = ThemeData();
-
+ 
     return MaterialApp(
       home: MyHomePage(),
       theme: tema.copyWith(
@@ -19,7 +24,7 @@ class ExpensesApp extends StatelessWidget {
           secondary: Colors.amber,
         ),
         textTheme: tema.textTheme.copyWith(
-          titleLarge: TextStyle(
+          headline6: TextStyle(
             fontFamily: 'OpenSans',
             fontSize: 18,
             fontWeight: FontWeight.bold,
@@ -37,28 +42,28 @@ class ExpensesApp extends StatelessWidget {
     );
   }
 }
-
+ 
 class MyHomePage extends StatefulWidget {
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
-
+ 
 class _MyHomePageState extends State<MyHomePage> {
-  final List<Transaction> _transactions = [
-    // Transaction(
-    //   id: 't1',
-    //   title: 'Novo Tênis de Corrida',
-    //   value: 310.76,
-    //   date: DateTime.now(),
-    // ),
-    // Transaction(
-    //   id: 't2',
-    //   title: 'Conta de Luz',
-    //   value: 211.30,
-    //   date: DateTime.now(),
-    // ),
+  final _transactions = [
+    Transaction(
+      id: 't1',
+      title: 'Novo Tênis de Corrida',
+      value: 310.76,
+      date: DateTime.now(),
+    ),
+    Transaction(
+      id: 't2',
+      title: 'Conta de Luz',
+      value: 211.30,
+      date: DateTime.now(),
+    ),
   ];
-
+ 
   _addTransaction(String title, double value) {
     final newTransaction = Transaction(
       id: Random().nextDouble().toString(),
@@ -66,14 +71,14 @@ class _MyHomePageState extends State<MyHomePage> {
       value: value,
       date: DateTime.now(),
     );
-
+ 
     setState(() {
       _transactions.add(newTransaction);
     });
-
+ 
     Navigator.of(context).pop();
   }
-
+ 
   _openTransactionFormModal(BuildContext context) {
     showModalBottomSheet(
       context: context,
@@ -82,15 +87,12 @@ class _MyHomePageState extends State<MyHomePage> {
       },
     );
   }
-
+ 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          'Despesas Pessoais',
-          style: TextStyle(fontFamily: 'OpenSans'),
-        ),
+        title: Text('Despesas Pessoais'),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.add),
@@ -122,3 +124,10 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
+E outra coisa, será necessária uma mudança quando for utilizar as cores colocadas no tema. Na próxima aula, por exemplo, lá no arquivo “transaction_list.dart” em um trecho do códigos nós temos:
+
+color: Theme.of(context).primaryColor,
+Agora será assim:
+
+color: Theme.of(context).colorScheme.primary,
+Basicamente é isso galera. Bons estudos!
